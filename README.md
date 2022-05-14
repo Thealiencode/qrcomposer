@@ -1,0 +1,1 @@
+This is a Qrcode Generator and ApI FOr geerating qrcode
