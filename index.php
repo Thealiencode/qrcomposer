@@ -21,10 +21,26 @@
 
    <div class="container container__content">
        <div class="form__content">
-           <div class="form-group">
-               <label >Target Url:</label>
-               <input type="url" placeholder="https://example.com" oninput="get_qr(this)" value="">
-           </div>
+        <div class="qr-type">
+            <button data-type="link" class="active" onclick="changeActiveState(this)"> <i class="fas fa-link"></i> Link</button>
+            <button data-type="email" onclick="changeActiveState(this)"> <i class="fas fa-envelope"></i> Email</button>
+            <button data-type="wifi" onclick="changeActiveState(this)"> <i class="fas fa-wifi"></i> Wifi</button>
+            <button data-type="bitcoin" onclick="changeActiveState(this)"> <i class="fa-brands fa-bitcoin"></i> Bitcoin</button>
+            <button data-type="phone" onclick="changeActiveState(this)"> <i class="fa-solid fa-phone-volume"></i> Phone</button>
+            <button data-type="text" onclick="changeActiveState(this)"> <i class="fa-solid fa-align-justify"></i> Text</button>
+            <button data-type="sms" onclick="changeActiveState(this)"> <i class="fas fa-sms"></i> Sms</button>
+            <button data-type="whatsapp" onclick="changeActiveState(this)"> <i class="fa-brands fa-whatsapp"></i> whatsapp</button>
+            <button data-type="v-card" onclick="changeActiveState(this)"> <i class="fa-solid fa-address-card"></i> V-card</button>
+            <button data-type="geo" onclick="changeActiveState(this)"> <i class="fa-brands fa-bitcoin"></i> Geo Location</button>
+        </div>
+
+        <div id="form-area">
+
+            <div class="form-group">
+                <label >Target Url:</label>
+                <input type="url" placeholder="https://example.com" oninput="get_qr(this)" value="">
+            </div>
+        </div>
        </div>
 
        <div class="preview" >
