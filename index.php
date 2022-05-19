@@ -34,13 +34,13 @@
             <button data-type="geo" onclick="changeActiveState(this)"> <i class="fa-brands fa-bitcoin"></i> Geo Location</button>
         </div>
 
-        <div id="form-area">
+        <form id="form-area" onsubmit="onSubmit()">
 
             <div class="form-group">
                 <label >Target Url:</label>
                 <input type="url" placeholder="https://example.com" oninput="get_qr(this)" value="">
             </div>
-        </div>
+        </form>
        </div>
 
        <div class="preview" >

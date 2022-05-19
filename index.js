@@ -12,6 +12,7 @@ function setUpTargetForm(type){
     switch(type){
         case 'link' : 
             html = `
+            <input type="hidden" value="link" name="type">
             <div class="form-group">
                 <label >Target Url:</label>
                 <input type="url" placeholder="https://example.com" oninput="get_qr(this)" value="">
@@ -21,22 +22,30 @@ function setUpTargetForm(type){
 
         case 'email':
             html = `
+            <input type="hidden" value="email" name="type">
+
             <div class="form-group">
             <label>Email Content</label>
-                <input type="email" placeholder="Your Email Address"  value="">
+                <input type="email" placeholder="Your Email Address" name="email" value="">
             </div>
             <div class="form-group">
-                <input type="text" placeholder="Email Subject" oninput="">
+                <input type="text" placeholder="Email Subject" name="subject">
             </div>
             <div class="form-group">
-                <textarea placeholder="Email Body" oninput="" rows="8"></textarea>
+                <textarea placeholder="Email Body" name="body" rows="8"></textarea>
             </div>
             <small>Scaning this qrcode will send this email</small>
+            <div class="form-group">
+                <button class="btn" type="Submit"><i class="fa-solid fa-gears"></i> Generate</button>
+            </div>
+
             `
             break;
         case 'phone':
             html = `
-            <div style="display: grid; grid-template-columns: 20% 75%; gap:5%">
+            <input type="hidden" value="phone" name="type">
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, 30% 68%); gap:2%">
             
                 <div class="form-group" >
                     <label >Country Code:</label>
@@ -48,25 +57,36 @@ function setUpTargetForm(type){
                 </div>
             </div>
             <small>Scanning this code will send call this number</small>
+            <div class="form-group">
+                <button class="btn" type="Submit"><i class="fa-solid fa-gears"></i> Generate</button>
+            </div>
             `
             break
         case 'text':
             html = `
+            <input type="hidden" value="text" name="type>
+
                 <div class="form-group">
                     <label >Text:</label>
                     <textarea type="text" placeholder="Enter Message" oninput="get_qr(this)"></textarea> 
                 </div>
+
+                <div class="form-group">
+                <button class="btn" type="Submit"><i class="fa-solid fa-gears"></i> Generate</button>
+            </div>
                 `
             break;
         case 'sms':
             html = `
-            <div style="display: grid; grid-template-columns: 20% 75%; gap:5%">
+            <input type="hidden" value="sms" name="type">
+
+            <div style="display: grid; grid-template-columns: 30% 68%; gap:2%">
                 <div class="form-group" >
-                    <label >Country Code:</label>
+                    <label class="form-lbl">Country Code:</label>
                     <input type="text" placeholder="+234" oninput="get_qr(this)">
                 </div>
                 <div class="form-group">
-                    <label >Phone Number:</label>
+                    <label class="form-lbl">Phone Number:</label>
                     <input type="number" placeholder="90876567656" oninput="get_qr(this)">
                 </div>
             </div>
@@ -78,20 +98,25 @@ function setUpTargetForm(type){
 
             
             <small>Scanning this code will send an sms this number</small>
+            <div class="form-group">
+                <button class="btn" type="Submit"><i class="fa-solid fa-gears"></i> Generate</button>
+            </div>
             `
             break
 
         case 'wifi':
            html =  `
-                <div style="display: grid; grid-template-columns: 30% 30% 30%; gap:5%">
+            <input type="hidden" value="wifi" name="type">
+
+                <div class="col-3">
                 
                     <div class="form-group" >
                         <label >Network name</label>
-                        <input type="text" placeholder="SSID">
+                        <input type="text" name="ssid" placeholder="SSID">
                     </div>
                     <div class="form-group">
                         <label >Security Type:</label>
-                        <select>
+                        <select name="encryption">
                             <option>None</option>
                             <option>WEB</option>
                             <option>WPA/WPA2</option>
@@ -99,10 +124,17 @@ function setUpTargetForm(type){
                     </div>
                     <div class="form-group">
                         <label >Password:</label>
-                        <input type="text" placeholder="wifi password">
+                        <input name="password" type="password" placeholder="wifi password">
                     </div>
                 </div>
+                <div class="" style="margin-top:2rem">
+                    <label>Hidden</label>
+                    <input type="checkbox" name="hidden" value="true">
+                </div>
                 <small>Scanning this code will connect to this network</small>
+                <div class="form-group">
+                    <button class="btn" type="Submit"><i class="fa-solid fa-gears"></i> Generate</button>
+                </div>
                 `
             break;
         // case 'phone':
@@ -121,7 +153,6 @@ function setUpTargetForm(type){
 
 
 async function get_qr(element){
-    console.log(element)
     url = element.value
 
     response = await fetch(`/generator.php?url=${url}`)
@@ -173,4 +204,24 @@ function saveSVGAsPNG(){
       }
     }
 }
+
+
+document.querySelector('#form-area').addEventListener('submit', async(e) => {
+
+    e.preventDefault()
+    form = e.target
+    formData = new FormData(form);
+    queryString = new URLSearchParams(formData).toString();
+    
+    
+    response = await fetch(`/generator.php?`+queryString)
+    qrData = await response.json()
+    
+    console.log(qrData);
+    document.querySelector('#preview__content').innerHTML = qrData.data;
+})
+
+
+
+
 

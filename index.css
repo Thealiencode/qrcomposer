@@ -89,8 +89,24 @@ input, textarea, select {
     resize: vertical;
 }
 
+.btn {
+    background: var(--primary-color);
+    border-color: transparent;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px;
+    font-size: 19px;;
+    margin-top: 2rem;
+}
+
 svg rect {
     fill: none
+}
+
+.col-3 {
+    display: grid; 
+    grid-template-columns: 30% 30% 30%; 
+    gap:5%
 }
 
 .action_btns {
@@ -148,6 +164,24 @@ footer .copyright a {
         padding: 3rem 2rem;
     }
 
+    .form-group label {
+        font-size: 11px;
+    }
+
+    .qr-type {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1px;
+    }
+
+    .col-3 {
+        grid-template-columns: none;
+    }
+
+    .form__content {
+        width: 20rem;
+    }
+
 }
 
 @media screen and (max-width: 600px) {
@@ -157,9 +191,11 @@ footer .copyright a {
     }
     .container__content {
         grid-template-columns: 1fr;
+        gap: 0.8rem;
     }
     nav {
         padding: 1rem 10px;
+        margin-bottom: 2rem;
     }
 
     nav .brand {
@@ -173,9 +209,35 @@ footer .copyright a {
         margin-bottom: 2rem;
     }
 
+    .preview {
+        margin: 0 1rem 2rem;
+    }
+
     .preview, #form-area {
-        margin: 3rem 2rem;
+        padding: 3rem 1rem;
 
     }
+
+    .qr-type {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+    }
+
+    .qr-type button {
+        padding: 1.5rem .8rem;
+        width: unset;
+    }
+
+    footer {
+        margin-top: 2rem;
+    }
+
+    .form__content {
+        width: unset;
+    }
+
+
 }
+
 
