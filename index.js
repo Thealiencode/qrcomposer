@@ -26,10 +26,10 @@ function setUpTargetForm(type){
 
             <div class="form-group">
             <label>Email Content</label>
-                <input type="email" placeholder="Your Email Address" name="email" value="">
+                <input type="email" name="to" placeholder="Your Email Address" name="email" value="">
             </div>
             <div class="form-group">
-                <input type="text" placeholder="Email Subject" name="subject">
+                <input type="text" name="subject" placeholder="Email Subject" name="subject">
             </div>
             <div class="form-group">
                 <textarea placeholder="Email Body" name="body" rows="8"></textarea>
@@ -49,11 +49,11 @@ function setUpTargetForm(type){
             
                 <div class="form-group" >
                     <label >Country Code:</label>
-                    <input type="text" placeholder="+234" oninput="get_qr(this)">
+                    <input type="text" placeholder="+234" name="countrycode">
                 </div>
                 <div class="form-group">
                     <label >Phone Number:</label>
-                    <input type="number" placeholder="90876567656" oninput="get_qr(this)">
+                    <input type="number" placeholder="90876567656" name="phonenumber">
                 </div>
             </div>
             <small>Scanning this code will send call this number</small>
@@ -64,16 +64,16 @@ function setUpTargetForm(type){
             break
         case 'text':
             html = `
-            <input type="hidden" value="text" name="type>
+            <input type="hidden" value="text" name="type">
 
-                <div class="form-group">
-                    <label >Text:</label>
-                    <textarea type="text" placeholder="Enter Message" oninput="get_qr(this)"></textarea> 
-                </div>
-
-                <div class="form-group">
-                <button class="btn" type="Submit"><i class="fa-solid fa-gears"></i> Generate</button>
+            <div class="form-group">
+                <label >Text:</label>
+                <textarea type="text" placeholder="Enter Message" name="body" oninput="get_qr(this)"></textarea> 
             </div>
+
+                <div class="form-group">
+                    <button class="btn" type="Submit"><i class="fa-solid fa-gears"></i> Generate</button>
+                </div>
                 `
             break;
         case 'sms':
@@ -83,16 +83,16 @@ function setUpTargetForm(type){
             <div style="display: grid; grid-template-columns: 30% 68%; gap:2%">
                 <div class="form-group" >
                     <label class="form-lbl">Country Code:</label>
-                    <input type="text" placeholder="+234" oninput="get_qr(this)">
+                    <input type="text" name="countrycode" placeholder="+234"">
                 </div>
                 <div class="form-group">
                     <label class="form-lbl">Phone Number:</label>
-                    <input type="number" placeholder="90876567656" oninput="get_qr(this)">
+                    <input type="number" name="phonenumber" placeholder="90876567656" >
                 </div>
             </div>
             <div class="form-group">
                 <label >Text:</label>
-                <textarea type="text" placeholder="Enter Message" oninput="get_qr(this)"></textarea> 
+                <textarea type="text" placeholder="Enter Message" name="body"></textarea> 
             </div>
 
 
@@ -138,10 +138,120 @@ function setUpTargetForm(type){
                 `
             break;
         // case 'phone':
-        // case 'whatsapp':
-        // case 'v-card':
-        // case 'geo':
-        // case 'bitcoin':
+        case 'whatsapp':
+            html = `
+            <input type="hidden" value="whatsapp" name="type">
+
+            <div style="display: grid; grid-template-columns: 30% 68%; gap:2%">
+                <div class="form-group" >
+                    <label class="form-lbl">Country Code:</label>
+                    <input type="text" name="countrycode" placeholder="+234"">
+                </div>
+                <div class="form-group">
+                    <label class="form-lbl">Phone Number:</label>
+                    <input type="number" name="phonenumber" placeholder="90876567656" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label >Message:</label>
+                <textarea type="text" placeholder="Enter Message" name="message"></textarea> 
+            </div>
+
+            <div class="form-group">
+                <button class="btn" type="Submit"><i class="fa-solid fa-gears"></i> Generate</button>
+            </div>
+            `
+            break
+        case 'v-card':
+            html = `
+            <div class="col-md-2">
+                <div class="form-group" >
+                    <label class="form-lbl">Firstname</label>
+                    <input type="text" name="fname" placeholder="Enter Firstname"">
+                </div>
+                <div class="form-group">
+                    <label class="form-lbl">Lastnamer:</label>
+                    <input type="text" name="lname" placeholder="Enter lastname" >
+                </div>
+                <div class="form-group">
+                    <label class="form-lbl">email:</label>
+                    <input type="text" name="email" placeholder="Enter Email" >
+                </div>
+                <div class="form-group">
+                    <label class="form-lbl">Website url:</label>
+                    <input type="text" name="url" placeholder="https://" >
+                </div>
+                <div class="form-group">
+                    <label class="form-lbl">Website url:</label>
+                    <input type="text" name="url" placeholder="https://" >
+                </div>
+                <div class="form-group">
+                    <label class="form-lbl">Phone:</label>
+                    <input type="text" name="cell" placeholder="Enter Phone Number" >
+                </div>
+                <div class="form-group">
+                    <label class="form-lbl">Mobile Number:</label>
+                    <input type="text" name="home" placeholder="Enter Mobile Number" >
+                </div>
+                <div class="form-group">
+                    <label class="form-lbl">Company:</label>
+                    <input type="text" name="company" placeholder="Enter Company name" >
+                </div>
+                <div class="form-group">
+                    <label class="form-lbl">Address:</label>
+                    <input type="text" name="address" placeholder="House Address" >
+                </div>
+                <div class="form-group">
+                    <label class="form-lbl">Address:</label>
+                    <input type="text" name="zipcode" placeholder="Enter Zipcode" >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button class="btn" type="Submit"><i class="fa-solid fa-gears"></i> Generate</button>
+            </div>
+            `
+            break
+        case 'geo':
+            html = `
+            <input type="hidden" value="geo" name="type">
+
+            <div class="form-group" >
+                <label class="form-lbl">Latitude:</label>
+                <input type="number" name="latitude" placeholder="3777737">
+            </div>
+            <div class="form-group">
+                <label class="form-lbl">Longitude:</label>
+                <input type="number" name="longitude" placeholder="-8883839" >
+            </div>
+
+            <div class="form-group">
+                <button class="btn" type="Submit"><i class="fa-solid fa-gears"></i> Generate</button>
+            </div>
+            `
+            break
+        case 'bitcoin':
+            html = `
+            <input type="hidden" value="bitcoin" name="type">
+            <div class="col-md-2">
+
+                <div class="form-group">
+                    <label class="form-lbl">Address:</label>
+                    <input type="text" name="address" placeholder="OXe333ddededde">
+                </div>
+                <div class="form-group">
+                    <label class="form-lbl">Amount:</label>
+                    <input type="number" name="amount" placeholder="200000" >
+                </div>
+            
+            </div>
+
+            <div class="form-group">
+                <button class="btn" type="Submit"><i class="fa-solid fa-gears"></i> Generate</button>
+            </div>
+            `
+            break
+
 
 
     }

@@ -154,6 +154,12 @@ footer .copyright a {
     color: #fff;
 }
 
+.col-md-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 48%);
+    gap: 4%;
+}
+
 @media screen and (max-width: 1254px) {
     .container__content {
         grid-template-columns: 1fr 1fr;
@@ -235,6 +241,10 @@ footer .copyright a {
 
     .form__content {
         width: unset;
+    }
+
+    .col-md-2 {
+        grid-template-columns: none;
     }
 
 

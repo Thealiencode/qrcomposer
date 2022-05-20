@@ -30,11 +30,11 @@
             <button data-type="text" onclick="changeActiveState(this)"> <i class="fa-solid fa-align-justify"></i> Text</button>
             <button data-type="sms" onclick="changeActiveState(this)"> <i class="fas fa-sms"></i> Sms</button>
             <button data-type="whatsapp" onclick="changeActiveState(this)"> <i class="fa-brands fa-whatsapp"></i> whatsapp</button>
-            <button data-type="v-card" onclick="changeActiveState(this)"> <i class="fa-solid fa-address-card"></i> V-card</button>
+            <!-- <button data-type="v-card" onclick="changeActiveState(this)"> <i class="fa-solid fa-address-card"></i> V-card</button> -->
             <button data-type="geo" onclick="changeActiveState(this)"> <i class="fa-brands fa-bitcoin"></i> Geo Location</button>
         </div>
 
-        <form id="form-area" onsubmit="onSubmit()">
+        <form id="form-area" >
 
             <div class="form-group">
                 <label >Target Url:</label>
