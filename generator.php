@@ -49,7 +49,7 @@
             break;
         default: 
 
-            $data = $qrcode->size(280)->generate($_GET['url']);
+            $data = $qrcode->size(280)->merge('images/logos/00.png', .3)->generate($_GET['url']);
         }
         
 
